@@ -31,6 +31,7 @@ namespace Servicios.api.Gateway
         {
 
             //services.AddControllers();
+            services.AddCors();
             services.AddOcelot();
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("qOp0oyOTiDwrB0ul5M2Rw1N421EI1lgi"));
             services.AddAuthentication(options => {
@@ -59,6 +60,7 @@ namespace Servicios.api.Gateway
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

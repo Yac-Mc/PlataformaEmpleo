@@ -13,5 +13,6 @@ namespace Servicios.api.Seguridad.Core.Dto
         public string Surnames { get; set; }
         public string TypeUser { get; set; }
         public string Token { get; set; }
+        public string PathImg { get; set; }
     }
 }

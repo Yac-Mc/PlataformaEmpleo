@@ -1,15 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  public formSubmitted = false;
 
-  constructor() { }
+  public loginForm = this.fb.group({
+    email:[localStorage.getItem('email') || '', [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
+    password:['', [ Validators.required]],
+    remember:[(localStorage.getItem('email') || '' !== '')]
+  });
 
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private alertService: AlertService) { }
+
+  login(){
+    this.userService.login(this.loginForm.value).subscribe(resp =>{
+      if(this.loginForm.get('remember')?.value){
+        localStorage.setItem('email', this.loginForm.get('email')?.value)
+      }else{
+        localStorage.removeItem('email');
+      }
+      this.router.navigateByUrl('/');
+    }, (err) => {
+      this.alertService.getShowAlert('Error al registrase', err.message, 'error');
+    })
   }
-
 }
