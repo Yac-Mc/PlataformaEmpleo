@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_Gateway_Url: 'http://localhost:8561'
+  UrlApiUser: 'http://localhost:8562/api/'
 };
 
 /*
