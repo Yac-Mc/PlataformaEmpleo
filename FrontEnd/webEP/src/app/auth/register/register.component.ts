@@ -46,7 +46,7 @@ export class RegisterComponent {
       console.log('Error Formulario incorrecto');
     }else{
       this.userService.createUser(this.registerForm.value).subscribe(resp => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboard');
       }, (err) => {
         this.alertService.getShowAlert('Error al registrase', err.message, 'error');
       });
