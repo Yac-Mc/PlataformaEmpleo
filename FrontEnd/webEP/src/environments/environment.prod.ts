@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  UrlApiUser: 'http://seguridadpe.azurewebsites.net/api/'
+  UrlApiUser: 'https://seguridadpe.azurewebsites.net/api/'
 };
