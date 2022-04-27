@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  UrlApiUser: 'http://localhost:8562/api/'
+  UrlApiUser: 'https://seguridadpe.azurewebsites.net/api/'
 };
 
 /*

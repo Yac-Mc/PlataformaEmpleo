@@ -1,11 +1,12 @@
 export class User{
-    constructor(
-        public id: string,
-        public userName: string,
-        public name: string,
-        public surnames: string,
-        public typeUser: string,
-        public token: string,
-        public pathImg?: string,
-    ){}
+    id?: string;
+    userName?: string;
+    name?: string;
+    surnames?: string;
+    typeUser?: string;
+    token?: string;
+    pathImg?: string;
+    constructor(obj?: any){
+        Object.assign(this, obj);
+    }
 }

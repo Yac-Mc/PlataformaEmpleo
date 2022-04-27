@@ -21,15 +21,23 @@ export class LoginComponent {
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private alertService: AlertService) { }
 
   login(){
-    this.userService.login(this.loginForm.value).subscribe(resp =>{
-      if(this.loginForm.get('remember')?.value){
-        localStorage.setItem('email', this.loginForm.get('email')?.value)
-      }else{
-        localStorage.removeItem('email');
-      }
-      this.router.navigateByUrl('/');
-    }, (err) => {
-      this.alertService.getShowAlert('Error al registrase', err.message, 'error');
-    })
+    this.formSubmitted = true;
+    if(this.loginForm.valid){
+      this.userService.login(this.loginForm.value).subscribe(resp =>{
+        if(this.loginForm.get('remember')?.value){
+          localStorage.setItem('email', this.loginForm.get('email')?.value)
+        }else{
+          localStorage.removeItem('email');
+        }
+        this.router.navigateByUrl('/dashboard');
+      }, (err) => {
+        this.alertService.getShowAlert('Error al iniciar sesión', err.message, 'error');
+      })
+    }
   }
+
+  invalidField(field: string): boolean{
+    return !this.loginForm.get(field)?.value && this.formSubmitted;
+  }
+
 }

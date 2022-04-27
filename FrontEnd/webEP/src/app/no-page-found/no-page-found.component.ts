@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-no-page-found',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./no-page-found.component.css']
 })
 export class NoPageFoundComponent {
+  constructor(private router: Router){}
 
   year = new Date().getFullYear();
+
+  goHome(){
+    this.router.navigateByUrl('/dashboard');
+  }
 
 }
