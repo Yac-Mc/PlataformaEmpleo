@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - FrontEnd/webEP/**
+      - .github/workflows/azure-static-web-apps-white-pebble-096d33110.yml
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
