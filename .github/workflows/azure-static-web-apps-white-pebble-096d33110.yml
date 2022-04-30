@@ -6,10 +6,18 @@ on:
       - main
     paths:
       - FrontEnd/webEP/**
+    paths-ignore:
+      - FrontEnd/webEP/.vscode/**
+      - FrontEnd/webEP/README.md
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
+    paths:
+      - FrontEnd/webEP/**
+    paths-ignore:
+      - FrontEnd/webEP/.vscode/**
+      - FrontEnd/webEP/README.md
 
 jobs:
   avoid_reduncy:
