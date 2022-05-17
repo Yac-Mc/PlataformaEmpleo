@@ -14,12 +14,12 @@ export class RegisterComponent {
   public formSubmitted = false;
 
   public registerForm = this.fb.group({
-    name: ['Yoe Andres', [Validators.required]],
-    surnames: ['Cardenas', [Validators.required]],
-    email:['yac8807@gmail.com', [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
-    userName:['yac123456', [ Validators.required, Validators.minLength(3)]],
-    password:['Yac123456789#', [ Validators.required, Validators.minLength(5)]],
-    password2:['Yac123456789#', [ Validators.required, Validators.minLength(5)]],
+    name: ['', [Validators.required]],
+    surnames: ['', [Validators.required]],
+    email:['', [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
+    userName:['', [ Validators.required, Validators.minLength(3)]],
+    password:['', [ Validators.required, Validators.minLength(5)]],
+    password2:['', [ Validators.required, Validators.minLength(5)]],
     terms:[false, Validators.requiredTrue],
     typeUser:['Applicant', [Validators.required]]
   },
@@ -32,14 +32,21 @@ export class RegisterComponent {
 
   createUser(){
     this.formSubmitted = true;
-    console.log(this.registerForm.value);
-    console.log(this.registerForm);
-
-    if(this.registerForm.invalid){
+    if(this.registerForm.invalid){      
+      let htmlMsg: string = '<div class="row"><div class="col text-danger">'; 
+      htmlMsg += this.invalidField('name') ? '<p>*El nombre es obligatorio</p>' : '';
+      htmlMsg += this.invalidField('surnames') ? '<p>*El apellido es obligatorio</p>' : '';
+      htmlMsg += this.invalidField('userName') ? '<p>*El usuario es obligatorio</p>' : '';
+      htmlMsg += this.invalidField('email') ? '<p>*El correo es obligatorio y tiene que ser valido</p>' : '';
+      htmlMsg += this.invalidField('typeUser') ? '<p>*El tipo de usuario es obligatorio</p>' : '';
+      htmlMsg += this.passwordsNotEquals() ? '<p>*Las contraseñas deben de ser iguales</p>' : '';
+      htmlMsg += this.invalidField('terms') ? '<p>*Debe aceptar los terminos de uso</p>' : '';
+      htmlMsg += '</div></div>'
+      this.alertService.getShowAlert('Error al registrase', htmlMsg, 'error');
       console.log('Error Formulario incorrecto');
     }else{
       this.userService.createUser(this.registerForm.value).subscribe(resp => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboard');
       }, (err) => {
         this.alertService.getShowAlert('Error al registrase', err.message, 'error');
       });

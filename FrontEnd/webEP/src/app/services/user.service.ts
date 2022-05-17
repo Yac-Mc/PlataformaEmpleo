@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { RegisterForm } from '../interfaces/register-form.interface';
 
-const url = `${environment.base_Gateway_Url}/gatewayUser/`;
+const url = `${environment.UrlApiUser}user/`;
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,7 @@ export class UserService {
   }
 
   logout(){
-    
+    localStorage.removeItem('login');
   }
+  
 }
