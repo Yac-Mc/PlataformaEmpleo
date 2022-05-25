@@ -1,2 +1,49 @@
-<h1>YOE CARDENAS</h1>
-<p>dashboard works!</p>
+<!--<p>dashboard works!</p>-->
+<div class="row">
+    <div class="col-12" *ngFor="let empleo of empleos; let i = index">
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9 div-titulo">
+                        <h1>{{empleo.titulo}}</h1>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="row div-btn">
+                            <a class="btn" href="#" role="button">Envía Una Propuesta</a>
+                        </div>
+
+                        <div class="row">
+                            <p class="txt-precio">Más de USD {{empleo.salario}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="empleo.prioridad == 'Alta'">
+                    <p class="etq-prioridad" style="background-color: #e5383b;">
+                        Prioridad {{empleo.prioridad}}
+                    </p>
+                </div>
+
+                <div *ngIf="empleo.prioridad == 'Normal'">
+                    <p class="etq-prioridad" style="background-color: #ffd500;">
+                        Prioridad {{empleo.prioridad}}
+                    </p>
+                </div>
+
+                <div *ngIf="empleo.prioridad == 'Baja'">
+                    <p class="etq-prioridad" style="background-color: #42a5f5;">
+                        Prioridad {{empleo.prioridad}}
+                    </p>
+                </div>
+
+                <div class="div-info">
+                    <p class="txt-fecha">publicado hace {{empleo.tiempo_pub}}</p>
+                    <p class="txt-propuestas">Propuestas: {{empleo.propuestas}}</p>
+                </div>
+
+                <p>{{empleo.descripcion}}</p>
+            </div>
+        </div>
+    </div>
+</div>

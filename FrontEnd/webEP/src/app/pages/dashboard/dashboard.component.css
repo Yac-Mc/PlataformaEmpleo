@@ -1,0 +1,51 @@
+.card {
+    background-color: #f8f9fa;
+    color: black;
+    border-radius: 30px;
+}
+
+.div-titulo h1 {
+    font-weight: bold;
+}
+
+.div-btn {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    border-radius: 25px;
+    background-color: #1e88e5;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #42a5f5;
+    /*border-color: black;
+    color: black;*/
+}
+
+.txt-precio {
+    padding-left: 20px;
+    color: #29bf12;
+    font-weight: bold;
+}
+
+.etq-prioridad {
+    margin-top: 5px;
+    width: 25%;
+    color: white;
+    font-weight: bolder;
+    border-radius: 22px;
+    /*background-color: #e5383b;*/
+    text-align: center;
+}
+
+.txt-fecha {
+    float: left;
+    margin-right: 20px;
+}
+
+.txt-propuestas {
+    display: inline-block;
+}
